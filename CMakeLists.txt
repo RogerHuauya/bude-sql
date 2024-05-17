@@ -13,7 +13,23 @@ add_executable(${PROJECT_NAME} src/proxy/test_proxy.cpp src/proxy/proxy.cpp
         src/bplus/bplus.cpp
         src/bplus/bplus.h)
 
-add_executable(test_parser src/parser/test_parser.cpp src/parser/parser.cpp src/parser/parser.h src/parser/scanner.h)
+target_include_directories(${PROJECT_NAME} PRIVATE
+        ${PROJECT_SOURCE_DIR}/src
+        ${PROJECT_SOURCE_DIR}/src/
+        ${PROJECT_SOURCE_DIR}/src/proxy
+        ${PROJECT_SOURCE_DIR}/src/model
+)
+
+
+add_executable(test_parser src/parser/test_parser.cpp src/parser/parser.cpp src/parser/parser.h
+        src/parser/scanner.h src/parser/scanner.cpp src/parser/statement.h src/parser/statement.cpp )
+
+target_include_directories(
+        test_parser PRIVATE
+        ${PROJECT_SOURCE_DIR}/src/
+        ${PROJECT_SOURCE_DIR}/src/parser/
+)
+
 
 add_executable(test_proxy src/proxy/test_proxy.cpp)
 
@@ -22,9 +38,3 @@ target_include_directories(
         ${PROJECT_SOURCE_DIR}/src/model
 )
 
-target_include_directories(${PROJECT_NAME} PRIVATE
-        ${PROJECT_SOURCE_DIR}/src
-        ${PROJECT_SOURCE_DIR}/src/
-        ${PROJECT_SOURCE_DIR}/src/proxy
-        ${PROJECT_SOURCE_DIR}/src/model
-)

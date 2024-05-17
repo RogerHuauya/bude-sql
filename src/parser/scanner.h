@@ -1,103 +1,82 @@
+#pragma once
+
+#include <sstream>
 #include <iostream>
+#include <cstring>
 #include <string>
-#include <vector>
-#include <regex>
-#include <cctype>
+#include <fstream>
 
-enum TokenType {
-    WORD, STRING, GROUP, OPERATOR, LOGIC, EMPTY, EOT
+#include <unordered_map>
+
+using namespace std;
+
+class Token {
+public:
+    enum Type {
+        LPAREN = 0,
+        RPAREN,
+        NUM,
+        ID,
+        PRINT,
+        SEMICOLON,
+        ERR,
+        END,
+        CADENA,
+        SELECT,
+        FROM,
+        WHERE,
+        AND,
+        OR,
+        IS,
+        NOT,
+        INSERT,
+        INTO,
+        VALUES,
+        CREATE,
+        TABLE,
+        USING,
+        INDEX,
+        HASH,
+        AVL,
+        FILE,
+        DELETE,
+        ASTERISK,
+        COMMA
+    };
+    static const char *token_names[29];
+    Type type;
+    string lexema;
+
+    Token(Type);
+
+    Token(Type, const string source);
+
+    friend std::ostream &operator<<(std::ostream &outs, const Token &tok);
+    friend std::ostream &operator<<(std::ostream &outs, const Token *tok);
 };
 
-struct Token {
-    TokenType type;
-    std::string value;
-};
 
 class Scanner {
 public:
-    Scanner(const std::string &source) : source(source), cursor(0) {
-        readNextChar();
-    }
+    Scanner(const char *in_s);
 
-    Token readNextToken() {
-        while (std::isspace(currentChar)) readNextChar();
+    Token *nextToken();
 
-        if (std::isalnum(currentChar)) return readWord();
-        if (currentChar == '"' || currentChar == '\'' ||
-            currentChar == '`')
-            return readString();
-        if (currentChar == '(' || currentChar == ')') return readGroupSymbol();
-        if (currentChar == '=' || currentChar == '!' || currentChar == '<' ||
-            currentChar == '>')
-            return readOperator();
-
-        if (currentChar == '\0') return {EOT, ""};
-
-        readNextChar();
-        return {EMPTY, ""};
-    }
+    ~Scanner();
 
 private:
-    std::string source;
-    size_t cursor;
-    char currentChar;
+    string input;
+    int first, current;
+    unordered_map<string, Token::Type> reserved;
 
-    void readNextChar() {
-        if (cursor < source.size()) {
-            currentChar = source[cursor++];
-        } else {
-            currentChar = '\0';
-        }
-    }
+    char nextChar();
 
-    Token readWord() {
-        std::string tokenValue;
-        while (std::isalnum(currentChar) || currentChar == '.' ||
-               currentChar == '_') {
-            tokenValue += currentChar;
-            readNextChar();
-        }
+    void rollBack();
 
-        if (tokenValue == "AND" || tokenValue == "OR") {
-            return {LOGIC, tokenValue};
-        }
-        if (tokenValue == "IS" || tokenValue == "NOT") {
-            return {OPERATOR, tokenValue};
-        }
-        return {WORD, tokenValue};
-    }
+    void startLexema();
 
-    Token readString() {
-        char quote = currentChar;
-        std::string tokenValue;
-        tokenValue += currentChar;
-        readNextChar();
+    string getLexema();
 
-        while (currentChar != quote) {
-            tokenValue += currentChar;
-            readNextChar();
-        }
-        tokenValue += currentChar;
-        readNextChar();
+    Token::Type checkReserved(string);
 
-        return {STRING, tokenValue};
-    }
-
-    Token readGroupSymbol() {
-        char symbol = currentChar;
-        readNextChar();
-        return {GROUP, std::string(1, symbol)};
-    }
-
-    Token readOperator() {
-        std::string tokenValue(1, currentChar);
-        readNextChar();
-
-        if (currentChar == '=' || currentChar == '<' || currentChar == '>') {
-            tokenValue += currentChar;
-            readNextChar();
-        }
-
-        return {OPERATOR, tokenValue};
-    }
 };

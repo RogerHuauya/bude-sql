@@ -1,5 +1,4 @@
-#ifndef PROXY_H
-#define PROXY_H
+#pragma once
 
 #include <vector>
 #include <string>
@@ -57,6 +56,3 @@ std::ostream &operator<<(std::ostream &os, const QueryResult &result) {
     }
     return os;
 }
-
-
-#endif //PROXY_H

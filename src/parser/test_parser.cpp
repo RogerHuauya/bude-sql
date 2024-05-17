@@ -1,20 +1,13 @@
-#include <iostream>
 #include <string>
 #include "parser.h"
+#include "scanner.h"
 
 int main() {
-    std::string query = "SELECT name, age FROM users WHERE age > 30;";
-
-    Parser parser(query);
-    auto result = parser.parseSQL();
-
-    for (const auto& pair : result) {
-        std::cout << pair.first << ": ";
-        for (const auto& value : pair.second) {
-            std::cout << value << " ";
-        }
-        std::cout << std::endl;
-    }
+    string query = "SELECT name, age, locos, FROM users WHERE age = hola;";
+    Scanner scanner(query.c_str());
+    Parser parser(&scanner);
+    Statement* stm = parser.parse();
+    stm->execute();
 
     return 0;
 }
