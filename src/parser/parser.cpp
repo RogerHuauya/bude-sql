@@ -51,13 +51,14 @@ Statement *Parser::parse() {
         cout << "Error en scanner - caracter invalido" << endl;
         exit(0);
     }
+    if (match(Token::CREATE)){
+        sql_stm = parseCreate();
+    }
 
-    if (match(Token::SELECT)) {
+    else if (match(Token::SELECT)) {
         sql_stm = parseSelect();
     } /*else if (match(Token::INSERT)) {
         sql_stm = parseInsert();
-    } else if (match(Token::CREATE)) {
-        sql_stm = parseCreate();
     } else if (match(Token::DELETE)) {
         sql_stm = parseDelete();
     }*/
@@ -75,6 +76,59 @@ Statement *Parser::parse() {
     delete current;
     return sql_stm;
 }
+
+Statement *Parser::parseCreate(){
+auto *create_stm = new CreateStatement();
+    if (!match(Token::TABLE)) {
+        cout << "Error: se esperaba TABLE" << endl;
+        exit(0);
+    }
+    if (!match(Token::ID)) {
+        cout << "Error: se esperaba nombre de tabla" << endl;
+        exit(0);
+    }
+    create_stm->set_table_name(previous->lexema);
+    if (!match(Token::FROM)){
+        cout << "Error: se esperaba FROM" << endl;
+        exit(0);
+    }
+    if (!match(Token::FILE)) {
+        cout << "Error: se esperaba FILE" << endl;
+        exit(0);
+    }
+    if (!match(Token::ID)) {
+        cout << "Error: se esperaba nombre de archivo" << endl;
+        exit(0);
+    }
+    create_stm->set_file_name(previous->lexema);
+
+    if (match(Token::USING)) {
+        if (!match(Token::INDEX)) {
+            cout << "Error: se esperaba INDEX" << endl;
+            exit(0);
+        }
+        if (!match(Token::HASH) && !match(Token::AVL)) {
+            cout << "Error: se esperaba HASH o AVL" << endl;
+            exit(0);
+        }
+        create_stm->set_index_type(previous->type);
+        if (!match(Token::LPAREN)) {
+            cout << "Error: se esperaba (" << endl;
+            exit(0);
+        }
+        if (!match(Token::ID)) {
+            cout << "Error: se esperaba nombre de columna" << endl;
+            exit(0);
+        }
+        create_stm->set_index_column(previous->lexema);
+        if (!match(Token::RPAREN)) {
+            cout << "Error: se esperaba )" << endl;
+            exit(0);
+        }
+    }
+    return create_stm;
+}
+
 
 Statement *Parser::parseSelect() {
     auto *select_stm = new SelectStatement();

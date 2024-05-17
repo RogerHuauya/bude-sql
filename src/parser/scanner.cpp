@@ -32,6 +32,11 @@ Scanner::Scanner(const char *s) : input(s), first(0), current(0) {
     reserved["VALUES"] = Token::VALUES;
     reserved["CREATE"] = Token::CREATE;
     reserved["TABLE"] = Token::TABLE;
+    reserved["USING"] = Token::USING;
+    reserved["INDEX"] = Token::INDEX;
+    reserved["FILE"] = Token::FILE;
+    reserved["HASH"] = Token::HASH;
+    reserved["AVL"] = Token::AVL;
 }
 
 

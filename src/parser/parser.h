@@ -19,10 +19,10 @@ private:
 public:
     Parser(Scanner* scanner);
     Statement *parse();
+    Statement *parseCreate();
     Statement *parseSelect();
     /*
     Statement *parseInsert();
-    Statement *parseCreate();
     Statement *parseDelete();
      */
 };

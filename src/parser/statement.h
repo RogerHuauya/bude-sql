@@ -19,6 +19,24 @@ public:
     }
 };
 
+class CreateStatement : public Statement {
+    string file_name;
+    int index_type;
+    string index_column;
+public:
+    void execute();
+    string index_name;
+    void set_file_name(string _file_name){
+        this->file_name = _file_name;
+    }
+    void set_index_type(int _index_type){
+        this->index_type = _index_type;
+    }
+    void set_index_column(string _index_column){
+        this->index_column = std::move(_index_column);
+    }
+};
+
 class SelectStatement : public Statement {
     string where_column;
     bool select_all = false;
@@ -45,11 +63,6 @@ public:
 };
 
 class InsertStatement : public Statement {
-public:
-    void execute();
-};
-
-class CreateStatement : public Statement {
 public:
     void execute();
 };
