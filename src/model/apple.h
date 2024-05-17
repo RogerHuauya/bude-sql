@@ -63,6 +63,18 @@ struct AppRecord {
         return *this;
     }
 
+    std::string operator[](const std::string &key) const {
+        if (key == "id") return std::to_string(id);
+        if (key == "app_name") return std::string(app_name);
+        if (key == "size_bytes") return std::to_string(size_bytes);
+        if (key == "price") return std::to_string(price);
+        if (key == "rating_count_tot") return std::to_string(rating_count_tot);
+        if (key == "user_rating") return std::to_string(user_rating);
+        if (key == "cont_rating") return std::string(cont_rating);
+        if (key == "prime_genre") return std::string(prime_genre);
+        if (key == "removed") return std::to_string(removed);
+        throw std::invalid_argument("Invalid key");
+    }
 
 };
 
