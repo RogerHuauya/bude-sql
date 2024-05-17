@@ -13,6 +13,8 @@ add_executable(${PROJECT_NAME} src/proxy/main.cpp src/proxy/proxy.cpp
         src/bplus/bplus.cpp
         src/bplus/bplus.h)
 
+add_executable(test_parser src/parser/test_parser.cpp src/parser/parser.cpp src/parser/parser.h src/parser/scanner.h)
+
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/
