@@ -33,7 +33,7 @@ QueryResult Proxy::execute_query(string query) {
     QueryResult result;
     result.success = true;
     result.message = std::move(query);
-    result.columns = {"id", "app_name"};
+    result.columns = {"id", "track_name"};
     result.records = get_random_records(10);
 
     return result;

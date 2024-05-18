@@ -11,12 +11,23 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(${PROJECT_NAME} src/proxy/test_proxy.cpp src/proxy/proxy.cpp
         src/proxy/proxy.h
         src/bplus/bplus.cpp
-        src/bplus/bplus.h)
+        src/bplus/bplus.h
+        src/model/apple.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
         ${PROJECT_SOURCE_DIR}/src
         ${PROJECT_SOURCE_DIR}/src/
         ${PROJECT_SOURCE_DIR}/src/proxy
+        ${PROJECT_SOURCE_DIR}/src/model
+)
+
+
+add_executable(test_bplus src/bplus/test_bplus.cpp src/bplus/bplus.cpp src/bplus/bplus.h)
+
+target_include_directories(
+        test_bplus PRIVATE
+        ${PROJECT_SOURCE_DIR}/src/
+        ${PROJECT_SOURCE_DIR}/src/bplus/
         ${PROJECT_SOURCE_DIR}/src/model
 )
 
