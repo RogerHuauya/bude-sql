@@ -158,7 +158,7 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 [forks-url]: https://github.com/RogerHuauya/bude-sql/network/members
 [stars-shield]: https://img.shields.io/github/stars/RogerHuauya/bude-sql.svg?style=for-the-badge
 [stars-url]: https://github.com/RogerHuauya/bude-sql/stargaz
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/logo.webp
 [Raylib-url]: https://www.raylib.com/
 [Raylib-img]: https://img.shields.io/badge/Raylib-000000?style=for-the-badge&logo=raylib&logoColor=white
 [C++-url]: https://isocpp.org/
