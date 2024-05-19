@@ -154,7 +154,7 @@ void Bplus::search(int key, AppRecord &record) {
 void Bplus::display() {
     display_node(root_offset, 0);
 }
-
+/*
 void Bplus::load_csv() {
     ifstream file(csv_filename);
     string line;
@@ -168,7 +168,7 @@ void Bplus::load_csv() {
             record.id = stoi(field);
 
             getline(ss, field, ',');
-            strncpy(record.track_name, field.c_str(), sizeof(record.track_name) - 1);
+            strncpy(record.app_name, field.c_str(), sizeof(record.track_name) - 1);
 
             getline(ss, field, ',');
             record.size_bytes = std::stoul(field);
@@ -217,6 +217,21 @@ void Bplus::load_csv() {
             std::cerr << "Invalid argument: " << e.what() << " at line: " << line << std::endl;
         } catch (const std::out_of_range &e) {
             std::cerr << "Out of range: " << e.what() << " at line: " << line << std::endl;
+        }
+    }
+}
+*/
+
+void Bplus::load_csv() {
+    ifstream file(csv_filename, ios::binary);
+    AppRecord r;
+    int i=0;
+    while(file.read((char*)&r, sizeof(AppRecord))){
+        cout << i;
+        try{
+            insert(r);
+        } catch (const std::exception& e){
+            std::cerr << "Error: " << std::endl;
         }
     }
 }

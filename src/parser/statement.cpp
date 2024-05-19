@@ -1,6 +1,8 @@
 #include <iostream>
 #include "statement.h"
 #include "bplus.h"
+#include "avl_queries.hpp"
+#include "scanner.h"
 
 using namespace std;
 
@@ -12,12 +14,18 @@ QueryResult CreateStatement::execute() {
     cout << "Index type: " << index_type << endl;
     cout << "Index column: " << index_column << endl;
     cout << "Table name: " << get_table_name() << endl;
-
-    bplus = new Bplus(get_table_name(), file_name);
-    bplus->load_csv();
     QueryResult result;
     result.success = true;
     result.message = "Table created and csv loaded";
+    if(index_type == Token::AVL){
+        CREATE_INDEX(price, float)
+    }else if(index_type == Token::HASH){
+
+    }
+    else{
+        bplus = new Bplus(get_table_name(), file_name);
+        bplus->load_csv();
+    }
     return result;
 }
 
@@ -51,7 +59,12 @@ QueryResult SelectStatement::execute() {
         result.records.push_back(record);
         result.success = true;
         result.message = "Record found";
+    } else if (where_column == "price"){
+        SELECT_ATTRIBUTE(price, float)
+        result.success = true;
+        result.message = "Record found";
     }
+
     return result;
 }
 
