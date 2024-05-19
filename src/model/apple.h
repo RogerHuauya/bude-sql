@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <cstring>
 #include <vector>
+#include <array>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ struct AppRecord {
     char prime_genre[18]{'\0'};
     bool removed{};
 
-    std::string to_string() {
+    std::string to_string() const {
         std::stringstream ss;
         ss << "id: " << id << std::endl;
         ss << "app_name: " << app_name << std::endl;
