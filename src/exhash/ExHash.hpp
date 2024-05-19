@@ -112,7 +112,7 @@ private:
     string filename;
     string filename2;
     int buckets;
-    hash<string> fhash;
+    hash<unsigned int> fhash;
     KeyExtractor keyExtractor;
 
 public:

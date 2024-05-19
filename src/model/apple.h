@@ -74,8 +74,8 @@ struct AppRecord {
         return *this;
     }
     
-    bool matches(const char* key) const {
-        return strcmp(app_name, key) == 0;
+    bool matches(unsigned int key) const {
+        return id == key;
     }
 
 };

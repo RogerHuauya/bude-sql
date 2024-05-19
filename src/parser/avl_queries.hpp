@@ -42,21 +42,22 @@
     }\
 */
 
-#define CREATE_INDEX_HASH(attribute) \
+#define CREATE_INDEX_HASH(attribute, type) \
     if (index_column == #attribute) { \
-        std::function<const char*(const AppRecord &)> index = [](const AppRecord& app) {return app.attribute;}; \
+        std::function<type(const AppRecord &)> index = [](const AppRecord& app) {return app.attribute;}; \
         ExtendibleHashing<AppRecord, decltype(index)> eh("hash_idx.dat", "data13.dat", index, "AppleStore.dat");\
         ofstream tmp("xd"); \
         tmp << eh; \
     } \
 
-#define SELECT_ATTRIBUTE_HASH(attribute, charsize) \
+#define SELECT_ATTRIBUTE_HASH(attribute, type) \
     if (where_column == #attribute) {     \
-        std::function<const char*(const AppRecord &)> index = [](const AppRecord& app) {return app.attribute;}; \
+        std::function<type(const AppRecord &)> index = [](const AppRecord& app) {return app.attribute;}; \
         ExtendibleHashing<AppRecord, decltype(index)> eh("hash_idx.dat", "data13.dat", index, "AppleStore.dat");\
-        char value[charsize];            \
-        strcpy(value, where_value.c_str());\
-        result.records = std::move(eh.search(value)); \
+        type search_value{}; \
+        std::string str = where_value; \
+        auto tmp = std::from_chars(str.data(), str.data() + str.size(), search_value); \
+        result.records = std::move(eh.search(search_value));\
     }\
 
 #endif //BUDE_SQL_AVL_QUERIES_HPP
