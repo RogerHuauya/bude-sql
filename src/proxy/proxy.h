@@ -19,6 +19,3 @@ public:
 
     QueryResult execute_query(string query);
 };
-
-
-

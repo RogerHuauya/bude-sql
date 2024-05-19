@@ -21,8 +21,8 @@ public:
     Statement *parse();
     Statement *parseCreate();
     Statement *parseSelect();
-    /*
     Statement *parseInsert();
+    /*
     Statement *parseDelete();
      */
 };

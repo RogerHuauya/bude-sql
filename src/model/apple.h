@@ -6,6 +6,7 @@
 #include <cstdio>
 #include <cstring>
 #include <vector>
+#include <array>
 
 using namespace std;
 
@@ -35,7 +36,7 @@ struct AppRecord {
     char prime_genre[18]{'\0'};
     bool removed{};
 
-    std::string to_string() {
+    std::string to_string() const {
         std::stringstream ss;
         ss << "id: " << id << std::endl;
         ss << "app_name: " << app_name << std::endl;
@@ -50,7 +51,7 @@ struct AppRecord {
 
     std::string operator[](const std::string &key) const {
         if (key == "id") return std::to_string(id);
-        if (key == "track_name") return std::string(app_name);
+        if (key == "app_name") return std::string(app_name);
         if (key == "size_bytes") return std::to_string(size_bytes);
         if (key == "price") return std::to_string(price);
         if (key == "rating_count_tot") return std::to_string(rating_count_tot);
@@ -72,6 +73,11 @@ struct AppRecord {
         }
         return *this;
     }
+    
+    bool matches(unsigned int key) const {
+        return id == key;
+    }
+
 };
 
 
@@ -79,6 +85,7 @@ struct AppRecord {
 
 
 vector<AppRecord> get_random_records(int n);
+
 
 
 

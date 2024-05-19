@@ -57,9 +57,9 @@ Statement *Parser::parse() {
 
     else if (match(Token::SELECT)) {
         sql_stm = parseSelect();
-    } /*else if (match(Token::INSERT)) {
+    } else if (match(Token::INSERT)) {
         sql_stm = parseInsert();
-    } else if (match(Token::DELETE)) {
+    } /*else if (match(Token::DELETE)) {
         sql_stm = parseDelete();
     }*/
 
@@ -78,7 +78,7 @@ Statement *Parser::parse() {
 }
 
 Statement *Parser::parseCreate(){
-auto *create_stm = new CreateStatement();
+    auto *create_stm = new CreateStatement();
     if (!match(Token::TABLE)) {
         cout << "Error: se esperaba TABLE" << endl;
         exit(0);
@@ -175,4 +175,41 @@ Statement *Parser::parseSelect() {
     }
 
     return select_stm;
+}
+
+Statement *Parser::parseInsert() {
+    auto *insert_stm = new InsertStatement();
+    if (!match(Token::INTO)) {
+        cout << "Error: se esperaba INTO" << endl;
+        exit(0);
+    }
+    if (!match(Token::ID)) {
+        cout << "Error: se esperaba nombre de tabla" << endl;
+        exit(0);
+    }
+    insert_stm->set_table_name(previous->lexema);
+    if (!match(Token::VALUES)) {
+        cout << "Error: se esperaba VALUES" << endl;
+        exit(0);
+    }
+    if (!match(Token::LPAREN)) {
+        cout << "Error: se esperaba (" << endl;
+        exit(0);
+    }
+    while (match(Token::NUM) || match(Token::CADENA)) {
+        if (previous->type == Token::NUM) {
+            insert_stm->add_value(previous->lexema);
+        } else {
+            insert_stm->add_value(
+                    previous->lexema.substr(1, previous->lexema.size() - 2));
+        }
+        if (!match(Token::COMMA)) {
+            break;
+        }
+    }
+    if (!match(Token::RPAREN)) {
+        cout << "Error: se esperaba )" << endl;
+        exit(0);
+    }
+    return insert_stm;
 }
