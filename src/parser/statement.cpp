@@ -63,6 +63,10 @@ QueryResult SelectStatement::execute() {
         SELECT_ATTRIBUTE(price, float)
         result.success = true;
         result.message = "Record found";
+    } else if (where_column == "app_name"){
+
+        result.success = true;
+        result.message = "Record found";
     }
 
     return result;
