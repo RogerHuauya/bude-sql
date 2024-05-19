@@ -65,7 +65,11 @@ public:
 };
 
 class InsertStatement : public Statement {
+    vector<string> values;
 public:
+    void add_value(const string& value){
+        this->values.push_back(value);
+    }
     QueryResult execute();
 };
 

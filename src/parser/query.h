@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "apple.h"
+
 class QueryResult {
 public:
     vector<AppRecord> records;

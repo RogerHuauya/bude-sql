@@ -57,6 +57,12 @@ QueryResult SelectStatement::execute() {
 
 QueryResult InsertStatement::execute() {
     cout << "Executing INSERT statement" << endl;
+    cout << "Values: " << endl;
+    for (const auto &value: values) {
+        cout << value << " ";
+    }
+    cout << endl;
+    cout << "Table name: " << get_table_name() << endl;
 }
 
 QueryResult DeleteStatement::execute() {
