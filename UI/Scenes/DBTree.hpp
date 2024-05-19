@@ -6,21 +6,15 @@
 #include "../Util/GUIManager.hpp"
 #include "../Util/Button.hpp"
 
-class DBTree : public Scene
-{
+class DBTree : public Scene{
 public:
-    DBTree()
-    {
-        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        //PlayMusicStream(mainMenuMusic);
+    DBTree(){
         RETURN = new Button("return", GetScreenWidth() - 300, GetScreenHeight() - 100);
-
     }
 
     static void retr();
 
-    void Render() override
-    {
+    void Render() override{
         DrawText("B-Tree Documentation", 20, 20, 30, BLACK);
         DrawText("A B-tree is a self-balancing tree data structure that maintains sorted data and allows searches, sequential access,", 30, 60, 20, BLACK);
         DrawText("insertions, and deletions in logarithmic time. B-trees are generalized binary search trees where a node can have more", 30, 80, 20, BLACK);
@@ -52,7 +46,5 @@ public:
         RETURN->Render(retr);
     };
 private:
-    //Music mainMenuMusic;
     Button *RETURN;
-    //Estructura*
 };
