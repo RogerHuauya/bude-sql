@@ -7,6 +7,10 @@ using namespace std;
 #pragma once
 
 
+const int K = 10; //cantidad de elementos que va a registrar en el csv
+//maximo 390 , problema del csv
+
+
 template<typename T>
 class Bplus{
 public:

@@ -1,3 +1,4 @@
+#include "apple.h"
 #include "bplus.hpp"
 //#include <cstddef>
 #include <fstream>
@@ -9,33 +10,56 @@ Bplus<T>::Bplus(string _csv,Index _pk){
 	csv = _csv;
 	pk = _pk;
 
-
-	if(pk == RecordAux::ID){ 
+	if (pk == RecordAux::ID) {
 		index = "id_index.dat";
 		data = "id_data.dat";
-	}else if(pk == RecordAux::APP_NAME){
-		index = "app_name_index.dat";
-		data = "app_name_data.dat";
-	}else if(pk == RecordAux::SIZE_BYTES){
+	} else if (pk == RecordAux::TRACK_NAME) {
+		index = "track_name_index.dat";
+		data = "track_name_data.dat";
+	} else if (pk == RecordAux::SIZE_BYTES) {
 		index = "size_bytes_index.dat";
 		data = "size_bytes_data.dat";
-	}else if(pk == RecordAux::PRICE){
+	} else if (pk == RecordAux::CURRENCY) {
+		index = "currency_index.dat";
+		data = "currency_data.dat";
+	} else if (pk == RecordAux::PRICE) {
 		index = "price_index.dat";
 		data = "price_data.dat";
-	}else if(pk == RecordAux::RATING_COUNT_TOT){
+	} else if (pk == RecordAux::RATING_COUNT_TOT) {
 		index = "rating_count_tot_index.dat";
 		data = "rating_count_tot_data.dat";
-	}else if(pk == RecordAux::USER_RATING){
+	} else if (pk == RecordAux::RATING_COUNT_VER) {
+		index = "rating_count_ver_index.dat";
+		data = "rating_count_ver_data.dat";
+	} else if (pk == RecordAux::USER_RATING) {
 		index = "user_rating_index.dat";
 		data = "user_rating_data.dat";
-	}else if(pk == RecordAux::CONT_RATING){
-		index = "user_rating_index.dat";
-		data = "user_rating_data.dat";
-	}else if(pk == RecordAux::PRIME_GENRE){
+	} else if (pk == RecordAux::USER_RATING_VER) {
+		index = "user_rating_ver_index.dat";
+		data = "user_rating_ver_data.dat";
+	} else if (pk == RecordAux::VER) {
+		index = "ver_index.dat";
+		data = "ver_data.dat";
+	} else if (pk == RecordAux::CONT_RATING) {
+		index = "cont_rating_index.dat";
+		data = "cont_rating_data.dat";
+	} else if (pk == RecordAux::PRIME_GENRE) {
 		index = "prime_genre_index.dat";
 		data = "prime_genre_data.dat";
+	} else if (pk == RecordAux::SUP_DEVICES_NUM) {
+		index = "sup_devices_num_index.dat";
+		data = "sup_devices_num_data.dat";
+	} else if (pk == RecordAux::IPADSC_URLS_NUM) {
+		index = "ipadsc_urls_num_index.dat";
+		data = "ipadsc_urls_num_data.dat";
+	} else if (pk == RecordAux::LANG_NUM) {
+		index = "lang_num_index.dat";
+		data = "lang_num_data.dat";
+	} else if (pk == RecordAux::VPP_LIC) {
+		index = "vpp_lic_index.dat";
+		data = "vpp_lic_data.dat";
 	}
-	
+
 
 	
 	ifstream datafile(data,ios::binary);
@@ -69,32 +93,56 @@ Bplus<T>::Bplus(string _csv,Index _pk){
 template<typename T>
 Bplus<T>::Bplus(Index _pk){
 	pk = _pk;
-	if(pk == RecordAux::ID){ 
+	if (pk == RecordAux::ID) {
 		index = "id_index.dat";
 		data = "id_data.dat";
-	}else if(pk == RecordAux::APP_NAME){
-		index = "app_name_index.dat";
-		data = "app_name_data.dat";
-	}else if(pk == RecordAux::SIZE_BYTES){
+	} else if (pk == RecordAux::TRACK_NAME) {
+		index = "track_name_index.dat";
+		data = "track_name_data.dat";
+	} else if (pk == RecordAux::SIZE_BYTES) {
 		index = "size_bytes_index.dat";
 		data = "size_bytes_data.dat";
-	}else if(pk == RecordAux::PRICE){
+	} else if (pk == RecordAux::CURRENCY) {
+		index = "currency_index.dat";
+		data = "currency_data.dat";
+	} else if (pk == RecordAux::PRICE) {
 		index = "price_index.dat";
 		data = "price_data.dat";
-	}else if(pk == RecordAux::RATING_COUNT_TOT){
+	} else if (pk == RecordAux::RATING_COUNT_TOT) {
 		index = "rating_count_tot_index.dat";
 		data = "rating_count_tot_data.dat";
-	}else if(pk == RecordAux::USER_RATING){
+	} else if (pk == RecordAux::RATING_COUNT_VER) {
+		index = "rating_count_ver_index.dat";
+		data = "rating_count_ver_data.dat";
+	} else if (pk == RecordAux::USER_RATING) {
 		index = "user_rating_index.dat";
 		data = "user_rating_data.dat";
-	}else if(pk == RecordAux::CONT_RATING){
-		index = "user_rating_index.dat";
-		data = "user_rating_data.dat";
-	}else if(pk == RecordAux::PRIME_GENRE){
+	} else if (pk == RecordAux::USER_RATING_VER) {
+		index = "user_rating_ver_index.dat";
+		data = "user_rating_ver_data.dat";
+	} else if (pk == RecordAux::VER) {
+		index = "ver_index.dat";
+		data = "ver_data.dat";
+	} else if (pk == RecordAux::CONT_RATING) {
+		index = "cont_rating_index.dat";
+		data = "cont_rating_data.dat";
+	} else if (pk == RecordAux::PRIME_GENRE) {
 		index = "prime_genre_index.dat";
 		data = "prime_genre_data.dat";
+	} else if (pk == RecordAux::SUP_DEVICES_NUM) {
+		index = "sup_devices_num_index.dat";
+		data = "sup_devices_num_data.dat";
+	} else if (pk == RecordAux::IPADSC_URLS_NUM) {
+		index = "ipadsc_urls_num_index.dat";
+		data = "ipadsc_urls_num_data.dat";
+	} else if (pk == RecordAux::LANG_NUM) {
+		index = "lang_num_index.dat";
+		data = "lang_num_data.dat";
+	} else if (pk == RecordAux::VPP_LIC) {
+		index = "vpp_lic_index.dat";
+		data = "vpp_lic_data.dat";
 	}
-	
+
 
 	
 	ifstream datafile(data,ios::binary);
@@ -166,107 +214,204 @@ char* Bplus<char*>::stoT(string value){
 	char* tmp = value.data();
 	return tmp;
 }
+
 template<typename T>
 Record Bplus<T>::Bin2Record(ifstream &file){
 	char a='a';
 	string _id;
-	string app_name;
-	string size_bytes;
-	string price;
-	string rating_count_tot;
-	string user_rating;
-	string cont_rating;
-	string prime_genre;
-	string removed;
+	string _track_name;
+	string _size_bytes;
+	string _currency;
+	string _price;
+	string _rating_count_tot;
+	string _rating_count_ver;
+	string _user_rating;
+	string _user_rating_ver;
+	string _ver;
+	string _cont_rating;
+	string _prime_genre;
+	string _sup_devices_num;
+	string _ipadsc_urls_num;
+	string _lang_num;
+	string _vpp_lic;
 
+	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout <<a;
 		if(a != ','){ _id.push_back(a); }
 	}
 	a = 'a';
-			
+
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
-		if(a != ','){ app_name.push_back(a); }
+		// cout << a;
+		if(a != ','){ _track_name.push_back(a); }
 	}
 	a = 'a';
 
 			
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
+		// cout << a;
 
-		if(a != ','){ size_bytes.push_back(a); }
+		if(a != ','){ _size_bytes.push_back(a); }
 	}
 	a = 'a';
 
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
+		// cout << a;
 
-		if(a != ','){ price.push_back(a); }
+		if(a != ','){ _currency.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
+		// cout << a;
 
-		if(a != ','){ rating_count_tot.push_back(a); }
+		if(a != ','){ _price.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
+		// cout << a;
 
-		if(a != ','){ user_rating.push_back(a); }
+		if(a != ','){ _rating_count_tot.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
+		// cout << a;
 
-		if(a != ','){ cont_rating.push_back(a); }
+		if(a != ','){ _rating_count_ver.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
+		// cout << a;
 
-		if(a != ','){ prime_genre.push_back(a); }
+		if(a != ','){ _user_rating.push_back(a); }
+	}
+	a = 'a';
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout <<a;
+		if(a != ','){ _user_rating_ver.push_back(a); }
+	}
+	a = 'a';
+			
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+		if(a != ','){ _ver.push_back(a); }
+	}
+	a = 'a';
+
+			
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+
+		if(a != ','){ _cont_rating.push_back(a); }
+	}
+	a = 'a';
+
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+
+		if(a != ','){ _prime_genre.push_back(a); }
+	}
+	a = 'a';
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+
+		if(a != ','){ _sup_devices_num.push_back(a); }
+	}
+	a = 'a';
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+
+		if(a != ','){ _ipadsc_urls_num.push_back(a); }
+	}
+	a = 'a';
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+
+		if(a != ','){ _lang_num.push_back(a); }
+	}
+	a = 'a';
+	while (a != ',') {
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		// cout << a;
+		if(a != ','){ _vpp_lic.push_back(a); }
 	}
 	a = 'a';
 
 	while (a != '\n') {
 		if (file.eof()){ break; }
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
-		cout << a;
-
-		removed.push_back(a);
+		// cout << a;
+		
 	}
 	
-	unsigned int id = stoi(_id);
-	unsigned int _size_bytes = stoi(size_bytes);
-	unsigned int _rating_count_tot = stoi(rating_count_tot);
-	float _price = stof(price);
-	bool _removed;
+	unsigned int id = std::stoi(_id);
+	int size_bytes = std::stoi(_size_bytes);
+	float price = std::stof(_price);
+	unsigned int rating_count_tot = std::stoi(_rating_count_tot);
+	unsigned int rating_count_ver = std::stoi(_rating_count_ver);
+	float user_rating = std::stof(_user_rating);
+	float user_rating_ver = std::stof(_user_rating_ver);
+	unsigned int sup_devices_num = std::stoi(_sup_devices_num);
+	unsigned int ipadsc_urls_num = std::stoi(_ipadsc_urls_num);
+	unsigned int lang_num = std::stoi(_lang_num);
+	int vpp_lic = std::stoi(_vpp_lic);
 
+	// Convert string arrays to std::array<char, 256>
+	std::array<char, 256> track_name, currency, ver, cont_rating, prime_genre;
 
-    array<char, 256> _app_name;
-    array<char, 256> _cont_rating;
-    array<char, 256> _prime_genre;
-
-	for(int i=0;i<256;i++){
-		_app_name[i] = app_name[i];
-		_cont_rating[i] = cont_rating[i];
-		_prime_genre[i]  = prime_genre[i];
+	for(int i=0;i<_track_name.size();i++){
+		track_name[i] = _track_name[i];
+	}
+	for(int i=_track_name.size();i<256;i++){
+		track_name[i] = '\0';
 	}
 
-	if (removed == "True" || removed == "true" || removed == "TRUE"){_removed = true;}
-	else {removed = false;}
+	for(int i=0;i<_currency.size();i++){
+		currency[i] = _currency[i];
+	}
+	for(int i=_currency.size();i<256;i++){
+		currency[i] = '\0';
+	}
 
-	return Record(id,_app_name,_size_bytes,_price,_rating_count_tot,_cont_rating,_prime_genre,_removed);
+	for(int i=0;i<_ver.size();i++){
+		ver[i] = _ver[i];
+	}
+	for(int i=_ver.size();i<256;i++){
+		ver[i] = '\0';
+	}
+
+	for(int i=0;i<_cont_rating.size();i++){
+		cont_rating[i] = _cont_rating[i];
+	}
+	for(int i=_cont_rating.size();i<256;i++){
+		cont_rating[i] = '\0';
+	}
+
+	for(int i=0;i<_prime_genre.size();i++){
+		prime_genre[i] = _prime_genre[i];
+	}
+	for(int i=_prime_genre.size();i<256;i++){
+		prime_genre[i] = '\0';
+	}
+
+
+	return Record(id, track_name, size_bytes, currency, price, rating_count_tot, rating_count_ver,
+				user_rating, user_rating_ver, ver, cont_rating, prime_genre,
+				sup_devices_num, ipadsc_urls_num, lang_num, vpp_lic);
 
 }
 
@@ -595,14 +740,19 @@ void Bplus<T>::insert_csv(string csv){
 	int end = file.tellg();
 	file.seekg(0);
 
-
+	char a = 'a';
+	while(a != '\n'){
+		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+	}
+	int contador = 0;
 	while(true){
-		cout << file.tellg() << endl;
+		contador +=1;
+		if(contador==K){break;}
+		// cout << file.tellg() << endl;
 		record = Bin2Record(file);
 		cout << record << endl;
 		add(record);
 		if (file.tellg() == end){break;}
-
 	}
 
 	file.close();
@@ -611,6 +761,8 @@ template <typename T>
 vector<Record> Bplus<T>::search(T key){
 	fstream indexfile(index,ios::binary|ios::in|ios::out);
 	fstream datafile(data,ios::binary|ios::in|ios::out);
+
+
 	int bucket_pos  = search_from_nodo(key,root_pos,indexfile);
 
 
@@ -621,6 +773,7 @@ vector<Record> Bplus<T>::search(T key){
 
 	Record record;
 	RecordAux tmp; tmp.attr = pk;
+
 
 
 	for(int i=0;i<bucket.size;i++){
