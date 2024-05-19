@@ -78,7 +78,7 @@ Statement *Parser::parse() {
 }
 
 Statement *Parser::parseCreate(){
-auto *create_stm = new CreateStatement();
+    auto *create_stm = new CreateStatement();
     if (!match(Token::TABLE)) {
         cout << "Error: se esperaba TABLE" << endl;
         exit(0);
