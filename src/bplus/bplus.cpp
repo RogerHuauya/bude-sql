@@ -155,6 +155,72 @@ void Bplus::display() {
     display_node(root_offset, 0);
 }
 
+void Bplus::load_csv() {
+    ifstream file(csv_filename);
+    string line;
+    getline(file, line);
+    while (getline(file, line)) {
+        stringstream ss(line);
+        string field;
+        AppRecord record;
+        try {
+            getline(ss, field, ',');
+            record.id = stoi(field);
+
+            getline(ss, field, ',');
+            strncpy(record.track_name, field.c_str(), sizeof(record.track_name) - 1);
+
+            getline(ss, field, ',');
+            record.size_bytes = std::stoul(field);
+
+            getline(ss, field, ',');
+            strncpy(record.currency, field.c_str(), sizeof(record.currency) - 1);
+
+            getline(ss, field, ',');
+            record.price = std::stof(field);
+
+            getline(ss, field, ',');
+            record.rating_count_tot = std::stoul(field);
+
+            getline(ss, field, ',');
+            record.rating_count_ver = std::stoul(field);
+
+            getline(ss, field, ',');
+            record.user_rating = static_cast<UserRating>(std::stof(field) * 2);
+
+            getline(ss, field, ',');
+            record.user_rating_ver = std::stof(field);
+
+            getline(ss, field, ',');
+            strncpy(record.ver, field.c_str(), sizeof(record.ver) - 1);
+
+            getline(ss, field, ',');
+            strncpy(record.cont_rating, field.c_str(), sizeof(record.cont_rating) - 1);
+
+            getline(ss, field, ',');
+            strncpy(record.prime_genre, field.c_str(), sizeof(record.prime_genre) - 1);
+
+            getline(ss, field, ',');
+            record.sup_devices_num = stoul(field);
+
+            getline(ss, field, ',');
+            record.ipadSc_urls_num = stoul(field);
+
+            getline(ss, field, ',');
+            record.lang_num = stoul(field);
+
+            getline(ss, field, ',');
+            record.vpp_lic = stoi(field) != 0;
+
+            insert(record);
+        } catch (const std::invalid_argument &e) {
+            std::cerr << "Invalid argument: " << e.what() << " at line: " << line << std::endl;
+        } catch (const std::out_of_range &e) {
+            std::cerr << "Out of range: " << e.what() << " at line: " << line << std::endl;
+        }
+    }
+}
+
 void Bplus::display_node(int offset, int level) {
     BplusNode node;
     if (offset == NULL_OFFSET) {

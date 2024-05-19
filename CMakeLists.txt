@@ -8,7 +8,7 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 
-add_executable(${PROJECT_NAME} src/proxy/test_proxy.cpp src/proxy/proxy.cpp
+add_executable(${PROJECT_NAME} src/proxy/test_proxy.cpp
         src/proxy/proxy.h
         src/bplus/bplus.cpp
         src/bplus/bplus.h
@@ -42,10 +42,15 @@ target_include_directories(
 )
 
 
-add_executable(test_proxy src/proxy/test_proxy.cpp)
+add_executable(test_proxy src/proxy/test_proxy.cpp src/proxy/proxy.cpp src/model/apple.cpp
+        src/parser/parser.cpp src/parser/scanner.cpp src/parser/statement.cpp
+        src/parser/query.cpp src/bplus/bplus.cpp)
 
 target_include_directories(
         test_proxy PRIVATE
         ${PROJECT_SOURCE_DIR}/src/model
+        ${PROJECT_SOURCE_DIR}/src/proxy
+        ${PROJECT_SOURCE_DIR}/src/parser
+        ${PROJECT_SOURCE_DIR}/src/bplus
 )
 

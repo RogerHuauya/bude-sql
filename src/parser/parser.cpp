@@ -96,11 +96,11 @@ auto *create_stm = new CreateStatement();
         cout << "Error: se esperaba FILE" << endl;
         exit(0);
     }
-    if (!match(Token::ID)) {
-        cout << "Error: se esperaba nombre de archivo" << endl;
+    if (!match(Token::CADENA)) {
+        cout << "Error: se esperaba CADENA" << endl;
         exit(0);
     }
-    create_stm->set_file_name(previous->lexema);
+    create_stm->set_file_name(previous->lexema.substr(1, previous->lexema.size() - 2));
 
     if (match(Token::USING)) {
         if (!match(Token::INDEX)) {
@@ -116,11 +116,11 @@ auto *create_stm = new CreateStatement();
             cout << "Error: se esperaba (" << endl;
             exit(0);
         }
-        if (!match(Token::ID)) {
+        if (!match(Token::CADENA)) {
             cout << "Error: se esperaba nombre de columna" << endl;
             exit(0);
         }
-        create_stm->set_index_column(previous->lexema);
+        create_stm->set_index_column(previous->lexema.substr(1, previous->lexema.size() - 2));
         if (!match(Token::RPAREN)) {
             cout << "Error: se esperaba )" << endl;
             exit(0);
@@ -167,7 +167,7 @@ Statement *Parser::parseSelect() {
         if (match(Token::NOT)) {
             select_stm->set_where_not(true);
         }
-        if (!match(Token::ID)) {
+        if (!match(Token::NUM) && !match(Token::CADENA)) {
             cout << "Error: se esperaba valor, obtained: " << current << endl;
             exit(0);
         }

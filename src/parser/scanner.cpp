@@ -70,7 +70,7 @@ Token *Scanner::nextToken() {
         rollBack();
         string lex = getLexema();
         token = new Token(Token::CADENA, getLexema());
-    } else if (strchr("();,=", c)) {
+    } else if (strchr("();,=*", c)) {
         switch (c) {
             case '(':
                 token = new Token(Token::LPAREN);
@@ -86,6 +86,9 @@ Token *Scanner::nextToken() {
                 break;
             case '=':
                 token = new Token(Token::IS);
+                break;
+            case '*':
+                token = new Token(Token::ASTERISK);
                 break;
             default:
                 cout << "No deberia llegar aca" << endl;
