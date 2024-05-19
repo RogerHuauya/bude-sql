@@ -1,6 +1,5 @@
 #include "VAvl.hpp"
 
 // Definiciones de las variables estáticas
-std::string VAVL::TEXT = "a";
-Proxy VAVL::AVL;
+Proxy VAVL::proxy;
 QueryVisual* VAVL::Result = nullptr;

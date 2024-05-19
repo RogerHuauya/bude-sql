@@ -77,7 +77,12 @@ target_include_directories(
 add_executable(test_raylib
         UI/test_raylib.cpp
 
+        src/bplus/bplus.h
+        src/bplus/bplusnode.h
+        src/bplus/bplus.cpp
+
         src/model/apple.h
+        src/model/apple.cpp
 
         src/parser/parser.cpp
         src/parser/parser.h
@@ -85,6 +90,8 @@ add_executable(test_raylib
         src/parser/scanner.h
         src/parser/statement.h
         src/parser/statement.cpp
+        src/parser/query.cpp
+        src/parser/query.h
 
         src/proxy/proxy.h
         src/proxy/proxy.cpp
@@ -101,7 +108,9 @@ add_executable(test_raylib
         UI/Scenes/SceneVisualize.hpp
         UI/Scenes/VAVL.cpp
         UI/Scenes/VAvl.hpp
+        UI/Scenes/VBtree.cpp
         UI/Scenes/VBTree.hpp
+        UI/Scenes/VExtendible.cpp
         UI/Scenes/VExtendible.hpp
 
         UI/Util/Button.hpp

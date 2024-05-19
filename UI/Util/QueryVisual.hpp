@@ -68,7 +68,7 @@ public:
 private:
     QueryResult Visual;
     int scrollOffset;
-    const int rectWidth = 800;
+    const int rectWidth = 1100;
     const int rectHeight = 600;
     const int textPadding = 10;
     const int lineSpacing = 20;

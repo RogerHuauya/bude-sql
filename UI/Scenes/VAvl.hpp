@@ -14,112 +14,54 @@
 
 class VAVL : public Scene{
 public:
-    static Proxy AVL;
-    static string TEXT;
+    static Proxy proxy;
     static QueryVisual *Result;
 
     VAVL(){
         //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
         //PlayMusicStream(mainMenuMusic);
-
-        insert = new Button("insert", 25, 100);
-        find = new Button("find", 25, 200);
-        remove = new Button("remove", 25, 300);
-        range = new Button("range", 25, 400);
-        ret = new Button("return", 25, 500);
-    }
-
-    static void ins(){
-        VAVL* Walk;
-        Walk = new VAVL();
-        SceneManager::LoadScene(Walk);
-    }
-
-    static void rem(){
-        VAVL* Walk;
-        Walk = new VAVL();
-        SceneManager::LoadScene(Walk);
-    }
-
-    static void fi(){
-        VAVL* Walk;
-        Walk = new VAVL();
-        Result = new QueryVisual(AVL.execute_query(TEXT));
-        SceneManager::LoadScene(Walk);
-    }
-
-    static void ran(){
-        VAVL* Walk;
-        Walk = new VAVL();
-        SceneManager::LoadScene(Walk);
+        Return = new Button("return", screenWidth - 300, screenHeight - 80);
     }
 
     static void retur();
 
-    static void nothing(){}
-
-    void Render() override
-    {
+    void Render() override {
         //UpdateMusicStream(mainMenuMusic);
 
         int key = GetKeyPressed();
         char text[256] = "";
-        while (key != KEY_ENTER && !GUIManager::ShouldClose){
+        while (key != KEY_ENTER && !GUIManager::ShouldClose) {
             BeginDrawing();
             DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
             ClearBackground(DARKGRAY);
-            if(WindowShouldClose()) GUIManager::ShouldClose = true;
+            if (WindowShouldClose()) GUIManager::ShouldClose = true;
 
-            int len = strlen(text);
-            text[len] = (char)key;
-            text[len + 1] = '\0';
-
-            insert->Render(nothing);
-            remove->Render(nothing);
-            find->Render(nothing);
-            range->Render(nothing);
-            ret->Render(nothing);
+            if (key != KEY_CAPS_LOCK){
+                int len = strlen(text);
+                text[len] = (char) key;
+                text[len + 1] = '\0';
+            }
 
             if (Result != nullptr){
                 Result->Update();
                 Result->Render();
             }
 
-            DrawText("Enter text:", 10, 10, 50, BLACK);
-            DrawText(text, 310, 10, 50, BLACK);
+            Return->Render(retur);
+
+            DrawText("Query:", 10, 10, 20, WHITE);
+            DrawText(text, 80, 10, 20, WHITE);
             key = GetKeyPressed();
             EndDrawing();
         }
-        TEXT = text; //texto a mandar al parser;
-        while (!GUIManager::ShouldClose){
-            BeginDrawing();
-            DrawText("By Rodrigo", 2, GetScreenHeight() - 22, 20, WHITE);
-            ClearBackground(DARKGRAY);
-            if(WindowShouldClose()) GUIManager::ShouldClose = true;
-
-            insert->Render(ins);
-            remove->Render(rem);
-            find->Render(fi);
-            range->Render(ran);
-            ret->Render(retur);
-
-            if (Result != nullptr){
-                Result->Update();
-                Result->Render();
-            }
-
-            if (insert->IsPressed() || remove->IsPressed() || find->IsPressed() || range->IsPressed() ||
-                ret->IsPressed()){
-                break;
-            }
-            text[0] = '\0';
-            DrawText("Enter text:", 10, 10, 50, BLACK);
-            DrawText(text, 310, 10, 50, BLACK);
-            EndDrawing();
-        }
-    };
+        string x = text; //texto a mandar al parser;
+        QueryResult query_result = proxy.execute_query(x);
+        // "CREATE TABLE users FROM FILE 'D:/Documentos/Rodrigo/Utec/ciclo 2024-1/BD II/Unir/cmake-build-debug/AppleStore.csv' USING INDEX HASH ('id');"
+        //"SELECT track_name FROM users WHERE id=284882215;"
+        Result = new QueryVisual(query_result);
+    }
 private:
     //Music mainMenuMusic;
-    Button *insert, *remove, *find, *range, *ret;
     //Estructura*
+    Button *Return;
 };

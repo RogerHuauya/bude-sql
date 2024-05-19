@@ -17,8 +17,5 @@ public:
 
     ~Proxy() = default;
 
-    static QueryResult execute_query(string query);
+    QueryResult execute_query(string query);
 };
-
-
-
