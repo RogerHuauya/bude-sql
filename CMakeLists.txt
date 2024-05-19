@@ -106,12 +106,6 @@ add_executable(test_raylib
         UI/Scenes/SceneStructuresDocumen.cpp
         UI/Scenes/SceneStructuresVisualize.cpp
         UI/Scenes/SceneVisualize.hpp
-        UI/Scenes/VAVL.cpp
-        UI/Scenes/VAvl.hpp
-        UI/Scenes/VBtree.cpp
-        UI/Scenes/VBTree.hpp
-        UI/Scenes/VExtendible.cpp
-        UI/Scenes/VExtendible.hpp
 
         UI/Util/Button.hpp
         UI/Util/GUIManager.hpp

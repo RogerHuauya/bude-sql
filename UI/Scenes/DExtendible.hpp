@@ -6,15 +6,10 @@
 #include "../Util/GUIManager.hpp"
 #include "../Util/Button.hpp"
 
-class DExtendible : public Scene
-{
+class DExtendible : public Scene{
 public:
-    DExtendible()
-    {
-        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        //PlayMusicStream(mainMenuMusic);
+    DExtendible(){
         RETURN = new Button("return", GetScreenWidth() - 300, GetScreenHeight() - 100);
-
     }
 
     static void retr();
@@ -46,7 +41,5 @@ public:
         RETURN->Render(retr);
     };
 private:
-    //Music mainMenuMusic;
     Button *RETURN;
-    //Estructura*
 };

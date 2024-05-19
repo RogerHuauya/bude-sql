@@ -6,22 +6,15 @@
 #include "../Util/GUIManager.hpp"
 #include "../Util/Button.hpp"
 
-class DAVL : public Scene
-{
+class DAVL : public Scene{
 public:
-    DAVL()
-    {
-        //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
-        //PlayMusicStream(mainMenuMusic);
-
+    DAVL(){
         RETURN = new Button("return", GetScreenWidth() - 300, GetScreenHeight() - 100);
-
     }
 
     static void retr();
 
-    void Render() override
-    {
+    void Render() override{
         DrawText("AVL Tree Documentation", 20, 20, 30, BLACK);
         DrawText("An AVL tree is a self-balancing binary search tree where the difference between the heights of the left and right ", 30, 60, 20, BLACK);
         DrawText("subtrees of any node is at most one.", 30, 80, 20, BLACK);
@@ -51,7 +44,5 @@ public:
         RETURN->Render(retr);
     };
 private:
-    //Music mainMenuMusic;
     Button *RETURN;
-    //Estructura*
 };
