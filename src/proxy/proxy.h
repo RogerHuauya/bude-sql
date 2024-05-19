@@ -4,7 +4,7 @@
 #include <string>
 
 #include "apple.h"
-#include "parser/query.h"
+#include "query.h"
 
 using namespace std;
 
