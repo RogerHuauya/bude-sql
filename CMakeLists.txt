@@ -49,6 +49,15 @@ target_include_directories(
         ${PROJECT_SOURCE_DIR}/src/model
 )
 
+add_executable(test_exhash src/exhash/test_exhash.cpp src/exhash/ExHash.hpp src/exhash/utils.hpp)
+
+target_include_directories(
+        test_bplus PRIVATE
+        ${PROJECT_SOURCE_DIR}/src/
+        ${PROJECT_SOURCE_DIR}/src/hash/
+        ${PROJECT_SOURCE_DIR}/src/model
+)
+
 
 add_executable(test_parser src/parser/test_parser.cpp src/parser/parser.cpp src/parser/parser.h
         src/parser/scanner.h src/parser/scanner.cpp src/parser/statement.h src/parser/statement.cpp src/model/apple.cpp src/bplus/bplus.cpp)
