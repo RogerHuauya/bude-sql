@@ -18,14 +18,6 @@ public:
         char* char_array = new char[length + 1];
 
         std::strcpy(char_array, name.c_str());
-        Wave selectFX = LoadWave("rescources/sounds/select.wav");
-        Wave clickFX = LoadWave("rescources/sounds/click.wav");
-
-        SelectFX_AsSound = LoadSoundFromWave(selectFX);
-        ClickFX_asSound = LoadSoundFromWave(clickFX);
-
-        UnloadWave(clickFX);
-        UnloadWave(selectFX);
 
         this->name = char_array;
     };
@@ -42,23 +34,9 @@ public:
 
         DrawText(name, X + (150 - MeasureText(name, 30) / 2), Y + 25, 30, (isHovered(GetMouseX(), GetMouseY()) ? RED : BLACK));
 
-        if(isHovered(GetMouseX(), GetMouseY()))
-        {
-            if(!hovered)
-            {
-                PlaySound(SelectFX_AsSound);
-            }
-            if(IsMouseButtonPressed(0))
-            {
-                PlaySound(ClickFX_asSound);
-                onclick(_setup);
-            }
-        }
         hovered = isHovered(GetMouseX(), GetMouseY());
 
-        if (hovered && IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
-        {
-            PlaySound(ClickFX_asSound);
+        if (hovered && IsMouseButtonPressed(MOUSE_LEFT_BUTTON)){
             _setup(); // Ejecuta la función asociada al botón
             pressed = true; // Marca el botón como presionado
         }
@@ -75,7 +53,6 @@ public:
         return pressed;
     }
 private:
-    Sound SelectFX_AsSound, ClickFX_asSound;
     bool hovered;
     int X, Y;
     char* name;

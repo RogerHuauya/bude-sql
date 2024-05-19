@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+const int screenWidth = 1280;
+const int screenHeight = 720;
+
 class Scene
 {
 public:

@@ -103,6 +103,10 @@ add_executable(test_raylib
         UI/Scenes/VAvl.hpp
         UI/Scenes/VBTree.hpp
         UI/Scenes/VExtendible.hpp
+
+        UI/Util/Button.hpp
+        UI/Util/GUIManager.hpp
+        UI/Util/QueryVisual.hpp
         )
 
 target_include_directories(

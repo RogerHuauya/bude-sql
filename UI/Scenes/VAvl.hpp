@@ -5,20 +5,20 @@
 #include "../Util/SceneManager.hpp"
 #include "../Util/GUIManager.hpp"
 #include "../Util/Button.hpp"
+#include "../Util/QueryVisual.hpp"
 
 #include "cstdlib"
 
 #include "../src/proxy/proxy.h"
 
 
-class VAVL : public Scene
-{
+class VAVL : public Scene{
 public:
     static Proxy AVL;
     static string TEXT;
+    static QueryVisual *Result;
 
-    VAVL()
-    {
+    VAVL(){
         //mainMenuMusic = LoadMusicStream("rescources/sounds/music/Underclocked.mp3");
         //PlayMusicStream(mainMenuMusic);
 
@@ -44,8 +44,7 @@ public:
     static void fi(){
         VAVL* Walk;
         Walk = new VAVL();
-        auto resp = AVL.execute_query(TEXT);
-        cout << resp << endl;
+        Result = new QueryVisual(AVL.execute_query(TEXT));
         SceneManager::LoadScene(Walk);
     }
 
@@ -81,9 +80,13 @@ public:
             range->Render(nothing);
             ret->Render(nothing);
 
-            DrawText("Enter text:", 0, 0, 50, BLACK);
-            DrawRectangleLines(300, 2, 200, 40, BLACK);
-            DrawText(text, 310, 0, 50, BLACK);
+            if (Result != nullptr){
+                Result->Update();
+                Result->Render();
+            }
+
+            DrawText("Enter text:", 10, 10, 50, BLACK);
+            DrawText(text, 310, 10, 50, BLACK);
             key = GetKeyPressed();
             EndDrawing();
         }
@@ -99,14 +102,19 @@ public:
             find->Render(fi);
             range->Render(ran);
             ret->Render(retur);
+
+            if (Result != nullptr){
+                Result->Update();
+                Result->Render();
+            }
+
             if (insert->IsPressed() || remove->IsPressed() || find->IsPressed() || range->IsPressed() ||
                 ret->IsPressed()){
                 break;
             }
             text[0] = '\0';
-            DrawText("Enter text:", 0, 0, 50, BLACK);
-            DrawRectangleLines(300, 2, 200, 40, BLACK);
-            DrawText(text, 310, 0, 50, BLACK);
+            DrawText("Enter text:", 10, 10, 50, BLACK);
+            DrawText(text, 310, 10, 50, BLACK);
             EndDrawing();
         }
     };

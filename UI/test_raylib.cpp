@@ -2,14 +2,10 @@
 
 #include "Util/SceneManager.hpp"
 
-#include "../UI/Scenes.hpp"
 #include "../UI/Scenes/SceneMainMenu.hpp"
 
 
 #include "Util/GUIManager.hpp"
-
-const int screenWidth = 1280;
-const int screenHeight = 720;
 
 int main(void){
     InitWindow(screenWidth, screenHeight, "Game Test");

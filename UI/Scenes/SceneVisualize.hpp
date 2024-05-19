@@ -23,7 +23,7 @@ public:
 
         AVL = new Button("AVL", GetScreenWidth() / 2 - 150, GetScreenHeight() - 575);
         BTREE = new Button("BTree", GetScreenWidth() / 2 - 150, GetScreenHeight() - 450);
-        ExtendibleHashing = new Button("Extendible Hashing", GetScreenWidth() / 2 - 150, GetScreenHeight() - 325);
+        ExtendibleHashing = new Button("Extendible Hash", GetScreenWidth() / 2 - 150, GetScreenHeight() - 325);
         Return = new Button("Return", GetScreenWidth() / 2 - 150, GetScreenHeight() - 200);
     }
 
