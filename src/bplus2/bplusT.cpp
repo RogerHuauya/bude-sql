@@ -3,6 +3,7 @@
 #include <fstream>
 #include <ios>
 
+
 template<typename T>
 Bplus<T>::Bplus(string _csv,Index _pk){
 	csv = _csv;
@@ -180,12 +181,14 @@ Record Bplus<T>::Bin2Record(ifstream &file){
 
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout <<a;
 		if(a != ','){ _id.push_back(a); }
 	}
 	a = 'a';
 			
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
 		if(a != ','){ app_name.push_back(a); }
 	}
 	a = 'a';
@@ -193,32 +196,44 @@ Record Bplus<T>::Bin2Record(ifstream &file){
 			
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		if(a != ','){ size_bytes.push_back(a); }
 	}
 	a = 'a';
 
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		if(a != ','){ price.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		if(a != ','){ rating_count_tot.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		if(a != ','){ user_rating.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		if(a != ','){ cont_rating.push_back(a); }
 	}
 	a = 'a';
 	while (a != ',') {
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		if(a != ','){ prime_genre.push_back(a); }
 	}
 	a = 'a';
@@ -226,6 +241,8 @@ Record Bplus<T>::Bin2Record(ifstream &file){
 	while (a != '\n') {
 		if (file.eof()){ break; }
 		file.read(reinterpret_cast<char*>(&a),sizeof(a));
+		cout << a;
+
 		removed.push_back(a);
 	}
 	
@@ -578,7 +595,9 @@ void Bplus<T>::insert_csv(string csv){
 	int end = file.tellg();
 	file.seekg(0);
 
+
 	while(true){
+		cout << file.tellg() << endl;
 		record = Bin2Record(file);
 		cout << record << endl;
 		add(record);
@@ -980,7 +999,6 @@ void Bplus<T>::borrow_keys_right(int pos,int pos_right,int pos_nodo,fstream &ind
 		aux_insert_bucket_record(pos,true,tmp,data);
 		
 		data.seekg(pos);data.read(reinterpret_cast<char*>(&bucket),sizeof(Bucket));
-		cout << "current last value " << bucket << endl;
 	}
 	//actualizas la key del nodo con la nueva generada al llamar a las otras llaves
 	//necesitas la llave pasada y la nueva
@@ -1110,7 +1128,6 @@ void Bplus<T>::aux_insert_bucket_record(int pos_bucket,bool left,Record record,f
 	}
 
 	bucket.size+=1;
-	cout <<"aux insert " <<  bucket << endl;
 	data.seekp(pos_bucket);data.write(reinterpret_cast<char*>(&bucket), sizeof(Bucket));
 }
 

@@ -1,11 +1,7 @@
 #include <array>
-//#include<iostream>
 #include <fstream>
-//#include <cstring>
-//#include <type_traits>
-#include <type_traits>
 #include <vector>
-#include "apple_bplus.cpp"
+#include "apple.h"
 using namespace std;
 
 #pragma once
