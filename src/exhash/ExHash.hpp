@@ -1,6 +1,7 @@
 #ifndef EXTENDIBLE_HASHING_HPP
 #define EXTENDIBLE_HASHING_HPP
 
+#include "utils.hpp" 
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -8,7 +9,7 @@
 #include <functional>
 #include <vector>
 #include <type_traits>
-#include "utils.hpp" // Include the utils header
+#include "utils.hpp" 
 
 using namespace std;
 
