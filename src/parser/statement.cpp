@@ -8,6 +8,7 @@ using namespace std;
 
 Bplus *bplus;
 
+
 QueryResult CreateStatement::execute() {
     cout << "Executing CREATE statement" << endl;
     cout << "File name: " << file_name << endl;
@@ -20,9 +21,8 @@ QueryResult CreateStatement::execute() {
     if(index_type == Token::AVL){
         CREATE_INDEX(price, float)
     }else if(index_type == Token::HASH){
-
-    }
-    else{
+        CREATE_INDEX_HASH(app_name)
+    }else{
         bplus = new Bplus(get_table_name(), file_name);
         bplus->load_csv();
     }
@@ -53,6 +53,7 @@ QueryResult SelectStatement::execute() {
     } else {
         result.columns = select_column;
     }
+
     if (where_column == "id") {
         AppRecord record;
         bplus->search(stoi(where_value), record);
@@ -64,7 +65,7 @@ QueryResult SelectStatement::execute() {
         result.success = true;
         result.message = "Record found";
     } else if (where_column == "app_name"){
-
+        SELECT_ATTRIBUTE_HASH(app_name, 256)
         result.success = true;
         result.message = "Record found";
     }

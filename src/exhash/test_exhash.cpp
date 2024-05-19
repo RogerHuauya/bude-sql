@@ -1,13 +1,13 @@
-#include "apple.hpp"
+#include "apple.h"
 #include "ExHash.hpp"  
 #include "utils.hpp"   
-
+/*
 int main() {
     auto keyExtractor = [](const AppRecord& record) {
         return record.app_name;
     };
 
-    ExtendibleHashing<AppRecord, decltype(keyExtractor)> eh("hash_idx.dat", "data13.dat", keyExtractor);
+    ExtendibleHashing<AppRecord, decltype(keyExtractor)> eh("hash_idx.dat", "data13.dat", keyExtractor, "AppleStore.dat");
 
     AppRecord r1 = {1, "App1", 1000, 0.99, 100, UserRating::UserRating_4, "4+", "Games", false};
     eh.write_record(r1);
@@ -32,3 +32,4 @@ int main() {
 
     return 0;
 }
+*/

@@ -1,7 +1,7 @@
 #ifndef EXTENDIBLE_HASHING_HPP
 #define EXTENDIBLE_HASHING_HPP
 
-#include "utils.hpp" 
+#include "utils.hpp"
 #include <iostream>
 #include <cstring>
 #include <fstream>
@@ -9,12 +9,12 @@
 #include <functional>
 #include <vector>
 #include <type_traits>
-#include "utils.hpp" 
+#include "utils.hpp"
 
 using namespace std;
 
-const int bf = 4;
-const int D = 3;
+const int bf = 20;
+const int D = 14;
 
 struct BinHash {
     char bin_id[D];
@@ -125,10 +125,14 @@ public:
         return filename2;
     }
 
-    explicit ExtendibleHashing(const string& fl1, const string& fl2, KeyExtractor keyExtractor)
-        : filename(fl1), filename2(fl2), buckets(0), keyExtractor(keyExtractor) {
+    ~ExtendibleHashing() = default;
+
+    explicit ExtendibleHashing(const string& fl1, const string& fl2, KeyExtractor keyExtractor, const string& heapfile)
+            : filename(fl1), filename2(fl2), buckets(0), keyExtractor(keyExtractor) {
         fstream file1(filename, ios::binary | ios::in | ios::out);
         fstream file2(filename2, ios::binary | ios::in | ios::out);
+
+
 
         if (!file1 || !file2) {
             cout << "No existen los archivos... creándolos..." << endl;
@@ -149,6 +153,8 @@ public:
             file2_out.close();
 
             buckets = 2;
+
+            insert_all_data(heapfile);
         } else {
             cout << "Archivos cargados correctamente" << endl;
             Bucket<Record> ex;
@@ -157,16 +163,27 @@ public:
         }
     }
 
+    void insert_all_data(const string& heapfile){
+        ifstream f(heapfile, ios::binary);
+        Record r;
+        while(f.read((char*)&r, sizeof(Record))){
+            this->write_record(r);
+        }
+        f.close();
+    }
+
     void write_record(const Record& record) {
         fstream file1(filename, ios::binary | ios::in | ios::out);
         fstream file2(filename2, ios::binary | ios::in | ios::out);
         write_record(record, file1, file2);
+        file1.close();
+        file2.close();
     }
 
     void write_record(const Record& record, fstream& file1, fstream& file2) {
         int key_temp = fhash(keyExtractor(record));
         string key = bin_h(key_temp, D); // Ensure bin_h is visible
-        cout << "Key: " << key << endl;
+        //cout << "Key: " << key << endl;
 
         BinHash bh;
 
@@ -186,12 +203,12 @@ public:
             bucket_insert.insertRecord(record);
             file2.seekp(pos * sizeof(Bucket<Record>), ios::beg);
             file2.write((char*)(&bucket_insert), sizeof(Bucket<Record>));
-            cout << "Record inserted in bucket ID: " << bh.id << endl;
+            //cout << "Record inserted in bucket ID: " << bh.id << endl;
             return;
         } else if (bucket_insert.isFull() && level < D) {
-            cout << "Bucket is full, time to split" << endl;
-            bucket_insert.showData();
-            cout << endl;
+            //cout << "Bucket is full, time to split" << endl;
+            //bucket_insert.showData();
+            //cout << endl;
 
             this->buckets += 2;
 
@@ -241,13 +258,15 @@ public:
             file2.seekp(bh_right.id * sizeof(Bucket<Record>), ios::beg);
             file2.write((char*)(&bucket_right), sizeof(Bucket<Record>));
 
+            file2 << flush;
+            file1 << flush;
             write_record(record, file1, file2);
 
             file2.seekp(bh.id * sizeof(Bucket<Record>), ios::beg);
             Bucket<Record> bas;
             file2.write((char*)(&bas), sizeof(Bucket<Record>));
         } else if (bucket_insert.isFull() && level == D) {
-            cout << "Bucket is full, D is reach, time to next bucket" << endl;
+            //cout << "Bucket is full, D is reach, time to next bucket" << endl;
             buckets++;
             Bucket<Record> new_bucket;
             int pos = file2.tellg() / sizeof(Bucket<Record>) - 1;
