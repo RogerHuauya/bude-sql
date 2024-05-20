@@ -138,7 +138,7 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 | Arturo Barrantes | arturo.barrantes@utec.edu.pe | [Arturo Barrantes](https://github.com/xkal1bur) |
 | Rodrigo León | rodrigo.leon@utec.edu.pe | [RodrigoLeonUTEC](https://github.com/RodrigoLeonUTEC) |
 | Angelo Sodli | angello.soldi@utec.edu.pe | [darkblackv32](https://github.com/darkblackv32) |
-| .... | ....@utec.edu.pe | [...](https://github.com/xkal1bur) |
+| Joel Jimenez | joel.jimenez@utec.edu.pe | [...](https://github.com/xkal1bur) |
 
 
 <!-- ACKNOWLEDGMENTS -->
