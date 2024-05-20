@@ -129,6 +129,7 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 | Angelo Sodli        | angello.soldi@utec.edu.pe    | [darkblackv32](https://github.com/darkblackv32) |
 | Joel Jimenez        | joel.jimenez@utec.edu.pe     | [...](https://github.com/xkal1bur) |
 
+EL video se puede encontrar en el siguiente [link](https://youtu.be/M0xnF1DIMs0?si=ZiNOT2ydU8JNNtjV)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -138,6 +139,7 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
 
 EL video se puede encontrar en el siguiente (link)[https://youtu.be/M0xnF1DIMs0?si=ZiNOT2ydU8JNNtjV]
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
