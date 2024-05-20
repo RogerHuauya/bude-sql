@@ -141,6 +141,8 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 | Joel Jimenez | joel.jimenez@utec.edu.pe | [...](https://github.com/xkal1bur) |
 
 
+Puede ver el video en youtube en el siguiente [link](https://www.youtube.com/watch?v=M0xnF1DIMs0&ab_channel=ArturoBarrantes)
+
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
