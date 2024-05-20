@@ -78,17 +78,6 @@
 
 Para poner en marcha una copia local, siga estos sencillos pasos.
 
-### Prerequisites
-
-Prerequisitos
-
-### Installation
-
-Instalación
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- USAGE EXAMPLES -->
 ## Usage
@@ -132,14 +121,15 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 <!-- CONTACT -->
 ## Contact
 
-| Name            | Email                     | GitHub User    |
-|-----------------|---------------------------|----------------|
-| Roger Huauya Mamani | roger.huauya@utec.edu.pe | [Rogerhuauya](https://github.com/Rogerhuauya) |
-| Arturo Barrantes | arturo.barrantes@utec.edu.pe | [Arturo Barrantes](https://github.com/xkal1bur) |
-| Rodrigo León | rodrigo.leon@utec.edu.pe | [RodrigoLeonUTEC](https://github.com/RodrigoLeonUTEC) |
-| Angelo Sodli | angello.soldi@utec.edu.pe | [darkblackv32](https://github.com/darkblackv32) |
-| .... | ....@utec.edu.pe | [...](https://github.com/xkal1bur) |
+| Name                | Email                        | GitHub User    |
+|---------------------|------------------------------|----------------|
+| Roger Huauya Mamani | roger.huauya@utec.edu.pe     | [Rogerhuauya](https://github.com/Rogerhuauya) |
+| Arturo Barrantes    | arturo.barrantes@utec.edu.pe | [Arturo Barrantes](https://github.com/xkal1bur) |
+| Rodrigo León        | rodrigo.leon@utec.edu.pe     | [RodrigoLeonUTEC](https://github.com/RodrigoLeonUTEC) |
+| Angelo Sodli        | angello.soldi@utec.edu.pe    | [darkblackv32](https://github.com/darkblackv32) |
+| Joel Jimenez        | joel.jimenez@utec.edu.pe     | [...](https://github.com/xkal1bur) |
 
+EL video se puede encontrar en el siguiente [link](https://youtu.be/M0xnF1DIMs0?si=ZiNOT2ydU8JNNtjV)
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
@@ -147,6 +137,8 @@ La información necesaria es transformada luego a un archivo Apple.dat en format
 * [Heider Sanchez](https://github.com/heidersanchez)
 
 <p align="right">(<a href="#readme-top">Volver al inicio</a>)</p>
+
+EL video se puede encontrar en el siguiente (link)[https://youtu.be/M0xnF1DIMs0?si=ZiNOT2ydU8JNNtjV]
 
 
 

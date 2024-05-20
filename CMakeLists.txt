@@ -97,6 +97,12 @@ add_executable(test_raylib
         src/bplus/bplusnode.h
         src/bplus/bplus.cpp
 
+        src/avl/avl.hpp
+        src/avl/node.hpp
+
+        src/exhash/ExHash.hpp
+        src/exhash/utils.hpp
+
         src/model/apple.h
         src/model/apple.cpp
 
@@ -134,6 +140,8 @@ target_include_directories(
         ${PROJECT_SOURCE_DIR}/src/bplus
         ${PROJECT_SOURCE_DIR}/src/model
         ${PROJECT_SOURCE_DIR}/src/parser
+        ${PROJECT_SOURCE_DIR}/src/avl
+        ${PROJECT_SOURCE_DIR}/src/exhash
         ${PROJECT_SOURCE_DIR}/src/proxy
         ${PROJECT_SOURCE_DIR}/UI
         ${PROJECT_SOURCE_DIR}/UI/Scenes
