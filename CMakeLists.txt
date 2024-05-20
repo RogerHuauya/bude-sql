@@ -49,6 +49,20 @@ target_include_directories(
         ${PROJECT_SOURCE_DIR}/src/model
 )
 
+add_executable(test_exhash src/proxy/test_proxy.cpp src/proxy/proxy.cpp src/model/apple.cpp
+        src/parser/parser.cpp src/parser/scanner.cpp src/parser/statement.cpp
+        src/parser/query.cpp src/bplus/bplus.cpp src/exhash/ExHash.hpp src/exhash/utils.hpp src/exhash/test_exhash.cpp)
+
+target_include_directories(
+        test_exhash PRIVATE
+        ${PROJECT_SOURCE_DIR}/src/model
+        ${PROJECT_SOURCE_DIR}/src/proxy
+        ${PROJECT_SOURCE_DIR}/src/parser
+        ${PROJECT_SOURCE_DIR}/src/bplus
+        ${PROJECT_SOURCE_DIR}/src/exhash
+        ${PROJECT_SOURCE_DIR}/src/avl
+)
+
 
 add_executable(test_parser src/parser/test_parser.cpp src/parser/parser.cpp src/parser/parser.h
         src/parser/scanner.h src/parser/scanner.cpp src/parser/statement.h src/parser/statement.cpp src/model/apple.cpp src/bplus/bplus.cpp)
@@ -64,7 +78,7 @@ target_include_directories(
 
 add_executable(test_proxy src/proxy/test_proxy.cpp src/proxy/proxy.cpp src/model/apple.cpp
         src/parser/parser.cpp src/parser/scanner.cpp src/parser/statement.cpp
-        src/parser/query.cpp src/bplus/bplus.cpp)
+        src/parser/query.cpp src/bplus/bplus.cpp src/exhash/ExHash.hpp src/exhash/utils.hpp src/exhash/test_exhash.cpp)
 
 target_include_directories(
         test_proxy PRIVATE
@@ -72,6 +86,8 @@ target_include_directories(
         ${PROJECT_SOURCE_DIR}/src/proxy
         ${PROJECT_SOURCE_DIR}/src/parser
         ${PROJECT_SOURCE_DIR}/src/bplus
+        ${PROJECT_SOURCE_DIR}/src/exhash
+        ${PROJECT_SOURCE_DIR}/src/avl
 )
 
 add_executable(test_raylib

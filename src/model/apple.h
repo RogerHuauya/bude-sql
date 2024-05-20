@@ -51,7 +51,7 @@ struct AppRecord {
 
     std::string operator[](const std::string &key) const {
         if (key == "id") return std::to_string(id);
-        if (key == "track_name") return std::string(app_name);
+        if (key == "app_name") return std::string(app_name);
         if (key == "size_bytes") return std::to_string(size_bytes);
         if (key == "price") return std::to_string(price);
         if (key == "rating_count_tot") return std::to_string(rating_count_tot);
@@ -73,6 +73,11 @@ struct AppRecord {
         }
         return *this;
     }
+    
+    bool matches(unsigned int key) const {
+        return id == key;
+    }
+
 };
 
 
